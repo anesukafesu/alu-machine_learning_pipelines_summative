@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+  <div>
+    <h1>Model Evaluation</h1>
+    <br />
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>F1 Score</td>
+          <td>{{ metrics.f1 }}</td>
+        </tr>
+        <tr>
+          <td>Accuracy</td>
+          <td>{{ metrics.accuracy }}</td>
+        </tr>
+        <tr>
+          <td>Recall</td>
+          <td>{{ metrics.recall }}</td>
+        </tr>
+        <tr>
+          <td>Precision</td>
+          <td>{{ metrics.precision }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+    <a href="/" class="cta">Go back</a>
+  </div>
+</section>
+{% endblock %}

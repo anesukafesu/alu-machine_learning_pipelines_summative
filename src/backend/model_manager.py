@@ -146,7 +146,11 @@ class ModelsManager:
             if f1 > best_f1:
                 self.__model = model
                 self.__scaler = scaler
-                self.__best_model_id = len(self.__registry.index)
+                self.best_model_accuracy = accuracy
+                self.best_model_f1 = f1
+                self.best_model_precision = precision
+                self.best_model_recall = recall
+                self.__best_model_id = len(self.__registry.index) - 1
                 self.__save_best_model_id()
 
         except Exception as e:

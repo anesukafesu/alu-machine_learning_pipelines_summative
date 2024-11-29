@@ -57,6 +57,16 @@ li {
   letter-spacing: 1px;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+td,
+th {
+  padding: 10px 20px;
+  border: 1px solid #b2b2b2;
+}
+
 textarea {
   resize: none;
   padding: 10px;

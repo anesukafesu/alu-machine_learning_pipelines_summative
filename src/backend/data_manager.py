@@ -19,10 +19,10 @@ class DataManager:
         """ Returns the latest dataset
         """
         # Get the name of the latest dataset
-        latest_dataset_name = self.registry.tail(1)['file_path'][0]
+        latest_dataset_name = self.registry.tail(1)['file_path'].values[0]
 
         # Read the latest dataset
-        latest_dataset = pd.read_csv(path.join(datasets_path, f'{latest_dataset_name}.csv'))
+        latest_dataset = pd.read_csv(path.join(datasets_path, f'{latest_dataset_name}'))
 
         # Return the latest dataset
         return latest_dataset
@@ -41,7 +41,7 @@ class DataManager:
             merged_dataset = pd.concat([latest_dataset, new_dataset]) 
 
             # Generate a unique id to be used in identifying the merged data
-            id = str(uuid.uuid())
+            id = str(uuid.uuid4())
 
             # Create a timestamp to record when the data was added
             now = datetime.datetime.now().isoformat()
@@ -50,10 +50,13 @@ class DataManager:
             dataset_name = f'credit_{id}.csv'
 
             # Save the dataset
-            merged_dataset.to_csv(path.join(datasets_path, 'f{dataset_name}'), index=False)
+            merged_dataset.to_csv(path.join(datasets_path, dataset_name), index=False)
 
             # Add the merged dataset to the registry
-            self.registry = pd.concat(self.registry, [dataset_name, now])
+            self.registry = pd.concat([self.registry, pd.DataFrame({ 
+                'file_path': [dataset_name],
+                'date_uploaded': [now]
+            })])
 
             # Commit the registry
             self.registry.to_csv(path.join(datasets_path, 'registry.csv'), index=False)
@@ -61,23 +64,10 @@ class DataManager:
             # Log
             self.__logger.info(f"Data merged succesfully into new dataset: {dataset_name}.")
 
-            # Generate new visualisations
-            # Define the visualisations
-            visualisations = {
-                'correlation_heatmap': Visualiser.create_class_distribution_bar_graph,
-                'loan_interest_histogram': Visualiser.create_loan_interest_histogram,
-                'home_ownership_piechart': Visualiser.create_piechart_showing_home_ownership,
-                'loan_status_bargraph': Visualiser.create_class_distribution_bar_graph,
-            }
-
-            # For each visualisation, call the corresponding function
-            for key, value in visualisations.items():
-                image_file_path = path.join(static_assets_directory_path, 'images', f'{key}.png')
-                value(merged_dataset, image_file_path)
-
             # Return true if all went well
             return True
         except Exception as e:
+            print(e)
             self.__logger.error(e)
             return False
     

@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+  <div>
+    <h1>Prediction</h1>
+    {% if prediction == 1 %}
+    <p>The person is <strong>likely to default</strong> on the loan.</p>
+    {% else %}
+    <p>The person is <strong>unlikely to default</strong> on the loan.</p>
+    {% endif %}
+    <br />
+    <br />
+    <a href="/#predict" class="cta">Make another prediction</a>
+  </div>
+</section>
+{% endblock %}

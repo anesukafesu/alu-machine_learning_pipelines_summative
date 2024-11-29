@@ -1,6 +1,7 @@
 import logging
 from ...config import log_file_path
 
+
 def create_logger(module_name: str) -> logging.Logger:
     """ Creates a logger for the specified module
     """
