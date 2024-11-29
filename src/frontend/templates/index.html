@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles/styles.css" />
+    <title>Anesu Kafesu - Machine Learning Pipeline Summative</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#">Home</a>
+        <ul>
+          <li><a href="#">Gather Data</a></li>
+          <li><a href="#">Train Model</a></li>
+          <li><a href="#">Evaluate Training</a></li>
+          <li><a href="#">Predict</a></li>
+        </ul>
+        <button class="cta">Get Started!</button>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <img src="/static/images/timeline.svg" alt="A timeline illustration" />
+        <div class="section-content">
+          <h1>Machine Learning Pipeline</h1>
+          <p>
+            Welcome to the Interactive Machine Learning Pipeline! This platform
+            is designed to guide you through the steps of building a machine
+            learning pipeline in an interactive and engaging way. From data
+            preprocessing to model evaluation, this site will take you on a
+            journey that showcases the end-to-end process of developing a
+            machine learning solution.
+          </p>
+          <p>Let’s dive in and start building!</p>
+          <button class="cta">Get Started</button>
+        </div>
+      </section>
+      <section id="gather-data">
+        <div class="section-content">
+          <img
+            src="/static/images/data_preprocessing.svg"
+            alt="An illustration of data preprocessing."
+          />
+          <h1>Gather data</h1>
+          <p>
+            A machine learning model is only as good as the data it learns from.
+            As the old adage goes, garbage in, garbage out. High-quality data is
+            the foundation of a robust model—poor or incomplete data can lead to
+            inaccurate predictions and unreliable results.
+          </p>
+
+          <p>
+            Additionally, gathering data is not a one-time process. It’s
+            important to iteratively add new data over time, as this helps
+            improve your model’s performance and adaptability to changes in the
+            problem domain.
+          </p>
+
+          <form action="/data" method="post">
+            <label for="csv-data">Input Data: </label>
+            <p>
+              Input data in csv format. Each row should be in its own line.
+              Additionally, each row should have the following values separated
+              by commas: person_home_ownership, loan_int_rate, loan_status,
+              loan_percent_income, cb_person_default_on_file. Do not include the
+              headings.
+            </p>
+            <br />
+            <textarea
+              name="csv-data"
+              id="csv-data"
+              cols="60"
+              rows="20"
+            ></textarea>
+            <br />
+            <button class="cta">Upload new data</button>
+          </form>
+        </div>
+      </section>
+      <section>
+        <img
+          src="/static/images/server_cluster.svg"
+          alt="An image of a chatbot"
+        />
+        <div class="section-content">
+          <h1>Model Training</h1>
+          <p>
+            In this pipeline, we’ll be using a Logistic Regression model to
+            perform predictions. Logistic regression is a widely used algorithm
+            for binary classification problems, making it an excellent choice
+            for this dataset. Preconfigured Model The logistic regression model
+            has been preconfigured for your convenience. All the necessary
+            parameters have been set up, ensuring it is ready to learn from your
+            data. You can focus on understanding the process without worrying
+            about the underlying configuration details.
+          </p>
+          <form action="/train">
+            <button class="cta">Retrain Model</button>
+          </form>
+        </div>
+      </section>
+      <section>
+        <img src="/static/images/predictive_analytics.svg" alt="" />
+        <div class="section-content">
+          <h1>Model Evaluation</h1>
+          <p>
+            After training a model, the next critical step is evaluation. This
+            process helps us understand how well the model performs on new,
+            unseen data by testing its ability to make accurate predictions.
+            While there are many metrics, f1 score offers a comprehensive view,
+            therefore that is what we use to rank models.
+          </p>
+          <button class="cta">Get best model metrics</button>
+        </div>
+      </section>
+      <section>
+        <div class="section-content">
+          <img src="static/images/chatbot.svg" alt="" />
+          <h1>Predict!</h1>
+          <p>
+            In this section, we finally get to use the model we trained to make
+            predictions.
+          </p>
+          <form action="/predict">
+            <label for="int_rate">Interest Rate</label>
+            <input
+              id="loan_int_rate"
+              name="loan_int_rate"
+              type="number"
+              value="15"
+              class="input"
+            />
+            <label for="person-home-ownership">
+              Borrower's home ownership status
+            </label>
+            <select
+              name="person_home_ownership"
+              id="person_home_ownership"
+              class="input"
+            >
+              <option value="RENT">Rent</option>
+              <option value="OWN">Own</option>
+              <option value="MORTGAGE">Mortgage</option>
+              <option value="OTHER">Other</option>
+            </select>
+            <label for="loan_percent_income">
+              Loan as a percentage of income:
+            </label>
+            <input
+              type="number"
+              name="loan_percent_income"
+              id="loan_percent_income"
+              value="20"
+              class="input"
+            />
+            <br />
+            <label for="cb_person_default_on_file">
+              Has the borrower ever defaulted on a loan before?
+            </label>
+            <div>
+              <input
+                type="radio"
+                name="cb_person_default_on_file"
+                id="cb_person_default_on_file_yes"
+                value="Y"
+              />
+              <label for="cb_person_default_on_file_yes">Yes</label>
+              <input
+                type="radio"
+                name="cb_person_default_on_file"
+                id="cb_person_default_on_file_no"
+                checked
+                value="N"
+              />
+              <label for="cb_person_default_on_file_no">No</label>
+            </div>
+            <br />
+            <br />
+            <button class="cta">Make prediction</button>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="/static/scripts/script.js"></script>
+  </body>
+</html>
