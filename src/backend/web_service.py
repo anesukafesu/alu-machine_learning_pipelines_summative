@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from .model_manager import ModelsManager
 from .data_manager import DataManager
 from ...config import template_directory_path, static_assets_directory_path
+from .encoders import person_home_ownership_map
 from io import StringIO
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -59,7 +60,6 @@ def data():
         else:
             # Else we return with a 400 status code
             return render_template('data-fail.html')
-
     
     return render_template('data-fail.html')
 
@@ -79,7 +79,8 @@ def create_visualisations():
     save_file_path = path.join(static_assets_directory_path, 'images', 'home_ownership_piechart.png')
     counts = data['person_home_ownership'].value_counts()
     plt.figure(figsize=(10, 8))
-    plt.pie(counts, labels=counts.axes[0])
+    person_home_ownership_map_inverted = {v: k for k, v in person_home_ownership_map.items()}
+    plt.pie(counts, labels=[person_home_ownership_map_inverted[index] for index in counts.axes[0]])
     plt.savefig(save_file_path)
 
     # Create a loan_interest histogram
