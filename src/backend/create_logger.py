@@ -1,5 +1,5 @@
 import logging
-from ...config import log_file_path
+from src.backend.config import log_file_path
 
 
 def create_logger(module_name: str) -> logging.Logger:

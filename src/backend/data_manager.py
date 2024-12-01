@@ -1,10 +1,10 @@
 import pandas as pd
 import uuid
 import datetime
-from .create_logger import create_logger
+from src.backend.create_logger import create_logger
 from os import path
-from ...config import static_assets_directory_path, datasets_path
-from .encoders import person_home_ownership_map, cb_person_default_on_file_map
+from src.backend.config import datasets_path
+from src.backend.encoders import person_home_ownership_map, cb_person_default_on_file_map
 
 class DataManager:
     """ Manages the applications data

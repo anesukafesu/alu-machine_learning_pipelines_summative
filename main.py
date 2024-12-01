@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 from flask import Flask, render_template, request
-from .model_manager import ModelsManager
-from .data_manager import DataManager
-from ...config import template_directory_path, static_assets_directory_path
-from .encoders import person_home_ownership_map
+from src.backend.model_manager import ModelsManager
+from src.backend.data_manager import DataManager
+from src.backend.config import template_directory_path, static_assets_directory_path
+from src.backend.encoders import person_home_ownership_map
 from io import StringIO
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -137,4 +138,4 @@ def evaluate():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

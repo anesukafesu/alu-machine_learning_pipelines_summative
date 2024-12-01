@@ -2,15 +2,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 from sklearn.preprocessing import StandardScaler
-from .create_logger import create_logger
+from src.backend.create_logger import create_logger
 from imblearn.over_sampling import RandomOverSampler
 import pandas as pd
 import numpy as np
 import pickle
 import uuid
 import datetime
-from .encoders import person_home_ownership_map, cb_person_default_on_file_map
-from ...config import models_path
+from src.backend.encoders import person_home_ownership_map, cb_person_default_on_file_map
+from src.backend.config import models_path
 from os import path, makedirs
 
 
