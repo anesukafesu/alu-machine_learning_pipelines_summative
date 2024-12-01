@@ -2,7 +2,8 @@
 
 ## Links
 [Youtube Demo](https://youtu.be/QQiaFmF4cgc)  
-[Live Demo](https://mlops-summative.onrender.com)
+[Live Demo](https://mlops-summative.onrender.com)  
+[Docker Hub](https://hub.docker.com/r/akafesu/mlops-summative)
 
 ## Project Description
 Usizo is a machine learning model designed to assess the creditworthiness of loan applicants. By analyzing various financial and demographic factors, the model predicts the likelihood of loan default. This enables financial institutions to make more informed lending decisions, reducing the risk of non-performing loans.
