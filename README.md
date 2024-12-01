@@ -48,3 +48,4 @@ Alternatively, use the Web UI by going to http//localhost:8080
 
 ## Locust Flood Simulation Results
 ![Locust Request Simulation Results](Locust.png)
+![Response Times](Response-Times.png)
